@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta - MA Urban Finds</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+    <!-- Contenedor principal centrado -->
+    <div class="register-container">
+        
+        <!-- Sección del formulario -->
+        <div class="register-box">
+            
+            <h1 class="register-title">Crear tu cuenta en MA</h1>
+
+            <!-- Formulario de Registro (Conectado a tu backend) -->
+            <form id="form-register" class="register-form">
+                <div class="input-group">
+                    <input type="text" id="reg-nombre" placeholder="Nombre completo" required autocomplete="name">
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Dirección de correo electrónico" required autocomplete="email">
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder="Contraseña (mínimo 6 caracteres)" required autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="btn-submit">Crear cuenta</button>
+            </form>
+
+            <!-- Botón social por si en el futuro se registran directo con Google -->
+            <div class="social-separation">
+                <button type="button" class="btn-social" id="btn-google-reg">
+                    <span class="icon-google">G</span> Registrarse con Google
+                </button>
+            </div>
+
+            <!-- Footer para volver al Login -->
+            <p class="register-footer">
+                ¿Ya tenés una cuenta? <a href="login.html" class="link-login">Inicia sesión</a>
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Script de control de registro -->
+    <script src="javascript/register.js"></script>
+</body>
+</html>

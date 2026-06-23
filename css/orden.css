@@ -1,0 +1,393 @@
+body {
+    background-color: rgb(255, 255, 255);
+    height: 1500px;
+}
+
+
+.navbar li a{
+    
+    color: rgb(0, 0, 0);
+    
+}
+
+#contenedororden {
+    margin: 150px auto;
+    width: clamp(0px, 97vw, 1300px);
+    height: 900px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+
+.contenedorcards {
+    width: 80px;
+    height: 70%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contenedorropa {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+    min-width: 30%;
+}
+
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+.card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.card img.active {
+    transform: scale(1.05);
+}
+
+
+
+.contenedorropa {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+    min-width: 30%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenedorcompra {
+    position: sticky;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    width: clamp(300px, 50%, 400px);
+    height: auto;
+    min-height: 60%;
+    margin-left: auto;
+    transition: top .3s ease;
+}
+
+.contenedorcompra.header-visible {
+    top: 70px;
+}
+
+.titulo {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin: 15px auto;
+}
+
+.titulo h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+.precios {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    height: 100px;
+    border-top: 1px solid rgb(197, 197, 197);
+    margin: 3% auto;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.preciomain p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.precioimpuesto p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+.conocetutalle {
+    text-decoration: none;
+    width: 150px;
+    height: 22px;
+    margin-left: 5%;
+    margin-bottom: 3%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgb(53, 53, 53);
+}
+
+.conocetutalle p {
+    font-family: "Oswald", sans-serif;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 300;
+    z-index: 1;
+    transition: color .2s ease;
+}
+
+
+.conocetutalle:hover p {
+    color: black;
+    font-weight: 300;
+}
+
+
+.conocetutalle::before,
+.conocetutalle::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.conocetutalle::before {
+    content: "";
+    background: rgb(53, 53, 53);
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.conocetutalle:hover::before {
+    transform: translate3d(100%, 0, 0);
+    
+}
+
+.talle {
+    width: 90%;
+    height: 75px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.talle p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+}
+
+.tallescontenedor {
+    height: 100%;
+    display: flex;
+    gap: 5px;
+}
+
+.talles {
+    display: flex;
+    border: 1px solid rgb(196, 196, 196);
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+    transition: border .15s ease;
+    cursor: pointer;
+}
+
+.talles.active {
+    border: 1px solid black;
+}
+
+.talles.active p {
+    color: black;
+}
+
+
+.talles:hover {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.talles p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 200;
+    color: rgb(68, 68, 68);
+    transition: color .15s ease;
+    user-select: none        ;
+}
+
+.talles:hover p {
+    color: black;
+}
+
+
+.agregaralcarro {
+    cursor: pointer;
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #ffffff;
+    width: 90%;
+    height: 35px;
+    border: 1px solid rgb(53, 53, 53);
+}
+
+
+.agregaralcarro::before,
+.agregaralcarro::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.agregaralcarro::before {
+    content: "";
+    background: rgb(53, 53, 53);
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.agregaralcarro:hover::before {
+    transform: translate3d(100%, 0, 0);
+    
+}
+
+
+
+.agregaralcarro p {
+    font-family: "Oswald", sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    transition: color .2s ease;
+    z-index: 1;
+}
+
+.agregaralcarro:hover p {
+    color: black;
+}
+
+
+.apartado,
+.apartado2 {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(196, 196, 196);
+    width: 90%;
+    height: 40px;
+    cursor: pointer;
+    gap: 2%;
+}
+
+.apartado p,
+.apartado2 p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 370;
+}
+
+.contenidoOculto,
+.contenidoOculto2 {
+    width: 90%;
+    margin: 1% auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+}
+
+.contenidoOculto p,
+.contenidoOculto2 p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+
+.contenidoOculto.abierto,
+.contenidoOculto2.abierto {
+    max-height: 500px;
+    
+}
+
+.gridinfogeneral {
+    margin: 0 auto 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    height: 140px;
+    gap: 5px;
+}
+
+.cardgrid {
+    border: 1px solid #c4c4c4;
+    height: 67px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.cardgrid p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+    user-select: none;
+    color: #444444;
+}
+
+.iconoabierto,
+.iconoabierto2 {
+    margin-left: auto;
+    transition: transform .1s ease;
+}
+
+.iconoabierto.abiertoicono,
+.iconoabierto2.abiertoicono {
+    transform: rotate(180deg);
+}
+

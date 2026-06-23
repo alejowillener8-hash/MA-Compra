@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Urban Finds</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/orden.css">
+    <link rel="stylesheet" href="/css/carrito.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap');
+    </style>
+</head>
+<body>
+    
+    <header class="nomainheader">
+
+            <a href="index.html" class="logo">
+                <img src="imagenes/M (1)-Photoroom.png" alt="">
+            </a>
+
+<<<<<<< HEAD
+            <ul class="navbar">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="catalogo.html">CATALOGO</a></li>
+                <li><a href="acercade.html">ACERCA DE</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="soporte.html">SOPORTE</a></li>
+            </ul>
+=======
+        <!-- From Uiverse.io by cssbuttons-io --> 
+        <a id="btn-logout" href="#" style="display: none;">
+        <span class="top-key"></span>
+        <span class="text">Cerrar sesion</span>
+        <span class="bottom-key-1"></span>
+        <span class="bottom-key-2"></span>
+        </a>
+>>>>>>> 6a414fd0938c054712a04c912b83ff582e5440a8
+
+            <div class="header-icons">
+
+                <!-- Usuario -->
+                <div class="user-menu">
+
+                    <button id="userButton" type="button" class="user-button">
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            width="23"
+                            height="23"
+                            viewBox="0 0 23 23"
+                            fill="none"
+                            stroke="#000000"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user-round">
+
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 0 0-16 0"/>
+
+                        </svg>
+
+                    </button>
+
+                    <div id="userDropdown" class="dropdown-menu"></div>
+
+                </div>
+
+                <!-- Carrito -->
+                <div class="cart-button" id="openCart">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="23"
+                        viewBox="0 0 23 23"
+                        fill="none"
+                        stroke="#000000"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="carritoicono"
+                        style="cursor:pointer;">
+
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+
+                    </svg>
+
+                    <span id="cartCounter">0</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+    <!-- Overlay -->
+        <div id="cartOverlay" class="cartOverlay"></div>
+
+        <!-- Drawer -->
+        <aside id="cartDrawer" class="cartDrawer">
+
+        <div class="cartHeader">
+            <h2>CARRITO</h2>
+            <button id="closeCart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22   " viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+
+        <div id="cartItems" class="cartItems">
+            <p>Tu carrito está vacío.</p>
+        </div>
+
+        <div class="cartFooter">
+
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">
+                    $0
+                </span>
+            </div>
+
+            <button class="checkoutButton">
+                Finalizar compra
+            </button>
+
+        </div>
+
+        </aside>
+
+
+    <section id="contenedororden">
+
+    <div class="contenedorcards">
+        <div class="card"><img src="" alt=""></div>
+        <div class="card"><img src="" alt=""></div>
+        <div class="card"><img src="" alt=""></div>
+        <div class="card"><img src="" alt=""></div>
+    </div>
+
+    <div class="contenedorropa">
+
+        <div class="slider"></div>
+
+    </div>
+
+    <div class="contenedorcompra">
+
+        <div class="titulo"><h1></h1></div>
+
+        <div class="precios">
+            <div class="preciomain"><p></p></div>
+            <div class="precioimpuesto"><p></p></div>
+        </div>
+
+        <a class="conocetutalle" href="index.html"><p>CONOCÉ TU TALLE</p></a>
+        <div class="talle">
+            <p class="textoTalle">Talle: </p>
+            <div class="tallescontenedor"></div>
+        </div>
+        <button class="agregaralcarro"><p>AGREGAR AL CARRITO</p></button>
+
+        <div class="gridinfogeneral">
+            <div class="cardgrid">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#444444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                <p>Envío gratis desde $200.000</p>
+            </div>
+            <div class="cardgrid">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#444444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <p>Hasta 3 cuotas sin Interés</p>
+            </div>
+            <div class="cardgrid">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#444444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                <p>Medios de pago seguros</p>
+            </div>
+            <div class="cardgrid">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#444444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-check-icon lucide-package-check"><path d="M12 22V12"/><path d="m16 17 2 2 4-4"/><path d="M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753"/><path d="M3.29 7 12 12l8.71-5"/><path d="m7.5 4.27 8.997 5.148"/></svg>
+                <p>Cambios dentro de los 30 días</p>
+            </div>
+        </div>
+
+        <div class="apartado">
+            <p class="tituloApartado">DETALLES DE LA PRENDA</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="iconoabierto"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="contenidoOculto">
+            <p></p>
+        </div>
+
+        <div class="apartado2">
+            <p class="tituloApartado">CUIDADOS DE LA PRENDA</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="iconoabierto2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="contenidoOculto2">
+            <p>aaaaaaaaaaa</p>
+            <p>bbbbbbbbbbb</p>
+            <p>ccccccccccc</p>
+            <p>ddddddddddd</p>
+            <p>eeeeeeeeeee</p>
+            <p>fffffff</p>
+            <p>ggggggggg</p>
+            <p>hhhhhhhhh</p>
+        </div>
+
+        
+
+    </div>
+    </section>
+
+
+    <script src="javascript/config.js"></script>
+    <script src="javascript/orden.js"></script>
+    <script src="javascript/carritoUI.js"></script>
+    <script src="javascript/index.js"></script>
+</body>
+</html>

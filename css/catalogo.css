@@ -1,0 +1,149 @@
+.navbar li a{
+    color: rgb(0, 0, 0);
+}
+
+body {
+    min-height: 1500px;
+}
+
+.contenedorcatalogo {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 3px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.cardcatalogo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+/* CONTENEDOR DE IMÁGENES */
+
+.contenedor-imagen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.contenedor-imagen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.4s ease;
+}
+
+.img-principal {
+    opacity: 1;
+    z-index: 2;
+}
+
+.img-secundaria {
+    opacity: 0;
+    z-index: 1;
+}
+
+.cardcatalogo:hover .img-principal {
+    opacity: 0;
+}
+
+.cardcatalogo:hover .img-secundaria {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+/* PRECIO */
+
+.cardcatalogo p {
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: clamp(8px, 1.5vw, 15px);
+}
+
+/* TALLES SOBRE LA IMAGEN */
+
+.contenedorcontalle{
+    position:absolute;
+    left:0;
+    bottom:-40px;
+    width:100%;
+    height:40px;
+    display:flex;
+    justify-content:end;
+    align-items:center;
+    gap:5px;
+    z-index:4;
+    transition:.25s;
+    opacity:0;
+}
+
+.cardcatalogo:hover .contenedorcontalle{
+    bottom:0;
+    opacity:1;
+}
+
+.titulo-y-talles{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-top:5px;
+    gap:8px;
+}
+
+.titulo-y-talles h3{
+    margin:0;
+    flex:1;
+    font-family:"Oswald",sans-serif;
+    font-weight:350;
+    font-size:clamp(13px, 1vw, 16px);
+}
+
+.mini-talles-container{
+    display:flex;
+    gap:3px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    margin-right:5px;
+}
+
+.mini-talles-container span{
+    font-family:"Oswald",sans-serif;
+    font-size:11px;
+    color:#686767;
+}
+
+.mini-talle{
+    width:30px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:11px;
+    border:1px solid #d9d9d9;
+    background:rgba(255,255,255,.897);
+}
+
+/* RESPONSIVE */
+
+@media (max-width:1000px){
+
+    .contenedorcatalogo{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}

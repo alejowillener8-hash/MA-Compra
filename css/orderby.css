@@ -1,0 +1,90 @@
+/* =====================================================
+   BOTÓN ORDENAR
+===================================================== */
+
+.botonordenar{
+    display:flex;
+    position:relative;
+    margin-top:-52px;
+    margin-right:10%;
+    width:fit-content;
+    gap:5px;
+    margin-left:auto;
+    align-items: center;
+    cursor:pointer;
+}
+
+.botonordenar p{
+    font-family:"Oswald", sans-serif;
+    font-weight:350;
+    font-size:clamp(13px, 1.35vw, 16px);
+    width:fit-content;
+    
+}
+
+.iconoordenar{
+    margin-left:auto;
+
+    transition:transform .15s ease;
+}
+
+.iconoordenar.abierto{
+    transform:rotate(180deg);
+}
+
+
+/* =====================================================
+   CONTENEDOR DESPLEGABLE
+===================================================== */
+
+.contenedor-ordenar{
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    top:230px;
+    right:10%;
+    width:200px;
+    background-color:#ffffff;
+    border:.1rem solid rgb(228,228,228);
+    z-index:15;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-15px);
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease;
+}
+
+.contenedor-ordenar.abierto{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+
+/* =====================================================
+   OPCIONES
+===================================================== */
+
+.opcion-ordenar{
+
+    padding:15px 20px;
+
+    font-family:"Oswald", sans-serif;
+    font-weight:300;
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.15s ease;
+}
+
+.opcion-ordenar:hover{
+    background:#111111;
+    color:white;
+}
+
+.opcion-ordenar:not(:last-child){
+    border-bottom:1px solid #ececec;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - MA Urban Finds</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="login-box">
+            
+            <h1 class="login-title">Iniciar sesión en MA</h1>
+
+            <form id="form-login" class="login-form">
+                <div class="input-group">
+                    <input type="email" id="login-email" placeholder="Dirección de correo electrónico" required autocomplete="email">
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="login-password" placeholder="Contraseña" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-email">Continuar con correo</button>
+            </form>
+
+            <div class="social-separation">
+                <button type="button" class="btn-social" id="btn-google">
+                    <span class="icon-google">G</span> Continuar con Google
+                </button>
+                
+                </div>
+
+            <p class="login-footer">
+                ¿No tenés una cuenta? <a href="register.html" class="link-signup">Registrate</a>
+            </p>
+
+        </div>
+    </div>
+
+    <script src="javascript/config.js"></script>
+    <script src="javascript/login.js"></script>
+</body>
+</html>

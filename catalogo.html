@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/catalogo.css">
+    <link rel="stylesheet" href="/css/filtro.css">
+    <link rel="stylesheet" href="/css/orderby.css">
+    <link rel="stylesheet" href="/css/carrito.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap');
+    </style>
+</head>
+<body>
+
+        <header class="nomainheader">
+
+            <a href="index.html" class="logo">
+                <img src="imagenes/M (1)-Photoroom.png" alt="">
+            </a>
+
+<<<<<<< HEAD
+            <ul class="navbar">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="catalogo.html">CATALOGO</a></li>
+                <li><a href="acercade.html">ACERCA DE</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="soporte.html">SOPORTE</a></li>
+            </ul>
+=======
+        <!-- From Uiverse.io by cssbuttons-io --> 
+        <a id="btn-logout" href="#" style="display: none;">
+        <span class="top-key"></span>
+        <span class="text">Cerrar sesion</span>
+        <span class="bottom-key-1"></span>
+        <span class="bottom-key-2"></span>
+        </a>
+>>>>>>> 6a414fd0938c054712a04c912b83ff582e5440a8
+
+            <div class="header-icons">
+
+                <!-- Usuario -->
+                <div class="user-menu">
+
+                    <button id="userButton" type="button" class="user-button">
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            width="23"
+                            height="23"
+                            viewBox="0 0 23 23"
+                            fill="none"
+                            stroke="#000000"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user-round">
+
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 0 0-16 0"/>
+
+                        </svg>
+
+                    </button>
+
+                    <div id="userDropdown" class="dropdown-menu"></div>
+
+                </div>
+
+                <!-- Carrito -->
+                <div class="cart-button" id="openCart">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="23"
+                        viewBox="0 0 23 23"
+                        fill="none"
+                        stroke="#000000"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="carritoicono"
+                        style="cursor:pointer;">
+
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+
+                    </svg>
+
+                    <span id="cartCounter">0</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Overlay -->
+        <div id="cartOverlay" class="cartOverlay"></div>
+
+        <!-- Drawer -->
+        <aside id="cartDrawer" class="cartDrawer">
+
+        <div class="cartHeader">
+            <h2>CARRITO</h2>
+            <button id="closeCart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+
+        <div id="cartItems" class="cartItems">
+            <p>Tu carrito está vacío.</p>
+        </div>
+
+        <div class="cartFooter">
+
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">
+                    $0
+                </span>
+            </div>
+
+            <button class="checkoutButton">
+                Finalizar compra
+            </button>
+
+        </div>
+
+        </aside>
+
+
+
+    
+    <!-- BOTÓN PRINCIPAL: Activa el despliegue del menú -->
+    <!-- Tu botón ya listo y posicionado -->
+<div class="botonfiltro" id="btnToggleFiltros">
+    <p>FILTRAR POR</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="iconofiltro"><path d="m6 9 6 6 6-6"/></svg>
+</div>
+
+<!-- Tu contenedor de filtros (empieza vacío) -->
+<div class="contenedor-filtro" id="contenedorFiltro">
+    
+    
+    <div class="contenedor-filtro-precio">
+        <span class="titulo-filtro">Precio</span>
+        <!-- Contenedor donde se mostrarán los números dinámicos sobre la barra -->
+        <div class="precio-valores-texto">
+            <span id="labelMin">$15.000</span>
+            <span id="labelMax">$189.900</span>
+        </div>
+
+        <!-- La barra interactiva con los dos círculos deslizantes -->
+        <div class="slider-contenedor-pivote">
+            <div class="slider-pista-color"></div>
+            <!-- Input para el valor mínimo actualizable -->
+            <input type="range" id="precioMin" name="precioMin" min="15000" max="189900" value="15000" class="range-input">
+            <!-- Input para el valor máximo actualizable -->
+            <input type="range" id="precioMax" name="precioMax" min="20000" max="189900" value="189900" class="range-input">
+        </div>
+    </div>
+
+
+
+    <!-- Sección de Filtro por Color Estilo Swatch -->
+    <div class="colorescontenedor">
+        <div class="filter-title-wrapper">
+            <span class="titulo-filtro">Color</span>
+        </div>
+        <!-- Este contenedor empezará vacío y JavaScript inyectará la grilla de colores -->
+        <div id="contenedorColoresDinamicos" class="color-swatch-grid"></div>
+    </div>
+
+
+    <!-- Sección de Filtro por Talle Estilo Botón Cuadrado -->
+    <div class="tallescontenedor">
+        <span class="titulo-filtro">Talle</span>
+        <!-- Este contenedor empezará vacío y JavaScript inyectará las cajas de los talles -->
+        <div id="contenedorTallesDinamicos" class="talles-buttons-grid"></div>
+    </div>
+
+
+
+    <!-- Sección de Filtro por Tipología Estilo Botón Rectangular -->
+    <div class="tipologiascontenedor">
+        <span class="titulo-filtro">Categoría</span>
+        <!-- Este contenedor empezará vacío y JavaScript inyectará las opciones de tu DB -->
+        <div id="contenedorTipologiasDinamicos" class="tipologias-buttons-grid"></div>
+    </div>
+    <button id="btnAplicarFiltros" class="btn-aplicar-filtros">
+    Aplicar filtros
+    </button>
+</div>
+
+
+
+<div class="botonordenar" id="btnToggleOrdenar">
+    <p>ORDENAR POR</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="iconoordenar"><path d="m6 9 6 6 6-6"/></svg>
+</div>
+
+<div class="contenedor-ordenar" id="contenedorOrdenar">
+
+    <div class="opcion-ordenar" data-order="recientes">
+        Más recientes
+    </div>
+
+    <div class="opcion-ordenar" data-order="antiguos">
+        Más antiguos
+    </div>
+
+    <div class="opcion-ordenar" data-order="menor">
+        Menor precio
+    </div>
+
+    <div class="opcion-ordenar" data-order="mayor">
+        Mayor precio
+    </div>
+
+</div>
+
+    <section>
+        <div class="contenedorcatalogo"> </div>
+    </section>
+
+    
+    <script src="javascript/config.js"></script>
+    <script src="javascript/catalogo.js"></script>
+    <script src="javascript/carritoUI.js"></script>
+    <script src="javascript/index.js"></script>
+    <script src="javascript/filtro.js"></script>
+    <script src="javascript/orderby.js"></script>
+</body>
+</html>

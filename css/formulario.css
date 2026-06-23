@@ -1,0 +1,173 @@
+/* Configuración base para el cuerpo de la página web */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal que centra y da estructura de tarjeta al formulario */
+.form-container {
+    max-width: 600px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Efecto sutil de sombra en los bordes */
+}
+
+/* Configuración de estilos para los títulos principales del panel */
+h2, h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+/* Caja contenedora para cada campo individual, organiza la etiqueta arriba y el input abajo */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para los textos de las etiquetas informativas */
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Estilos compartidos para inputs de texto, numéricos, áreas de texto y listas desplegables */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select { /* [NUEVO]: El selector 'select' se acopla aquí para unificar la estética visual */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff; /* Asegura el fondo blanco estándar */
+}
+
+/* [NUEVO]: Comportamiento visual de enfoque cuando el usuario interactúa con la lista desplegable */
+.form-group select {
+    cursor: pointer;
+}
+
+/* Cambia el color del borde cuando se hace clic dentro del input para escribir o seleccionar */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Líneas divisorias horizontales utilizadas para separar bloques conceptuales del formulario */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 25px 0;
+}
+
+/* Contenedor general que organiza verticalmente las opciones de talles */
+.talles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Margen de separación constante entre filas */
+}
+
+/* Diseño de cada renglón de talle (casilla + etiqueta + caja de stock) */
+.talle-row {
+    display: flex;
+    align-items: center; /* Alineación perfecta al centro vertical */
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Ajustes de tamaño y puntero para mejorar la experiencia de clic sobre las casillas */
+.talle-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Ancho controlado para las etiquetas de los talles, de este modo las cajas numéricas quedan alineadas verticalmente */
+.talle-row label {
+    font-weight: bold;
+    width: 100px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Dimensiones específicas y personalizadas para el input numérico del stock de talles */
+.talle-row input[type="number"] {
+    width: 120px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Distribución en cuadrícula inteligente de dos columnas para las cuatro opciones de carga de imagen */
+.imagenes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Botón principal de publicación */
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background 0.2s; /* Efecto suave de transición de color al pasar el mouse */
+}
+
+/* Efecto de oscurecimiento del botón al pasar el cursor sobre él */
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+
+.color-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.color-selector input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.color-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 2px solid #d5d5d5;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#varios_colores + label {
+    border: 2px solid #cfcfcf;
+}
+
+.color-selector input[type="radio"]:checked + .color-box {
+    transform: scale(1.12);
+    border-color: #007bff;
+}

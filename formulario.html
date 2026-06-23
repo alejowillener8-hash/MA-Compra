@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Cargar Prenda</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Panel de Administración</h2>
+        <p style="color: #666; margin-bottom: 20px;">
+            Ingresa los datos para registrar una nueva prenda en el catálogo.
+        </p>
+
+        <form id="productForm" enctype="multipart/form-data">
+
+            <!-- Nombre -->
+
+            <div class="form-group">
+                <label for="nombre">Nombre de la prenda</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ej: Campera de Jean Urbana"
+                    required
+                >
+            </div>
+
+            <!-- Precio -->
+
+            <div class="form-group">
+                <label for="precio">Precio ($)</label>
+                <input
+                    type="number"
+                    id="precio"
+                    name="precio"
+                    placeholder="0.00"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <!-- Descripción -->
+
+            <div class="form-group">
+                <label for="detalle">Descripción / Detalles de la prenda</label>
+                <textarea
+                    id="detalle"
+                    name="detalle"
+                    rows="4"
+                    placeholder="Ej: Material 100% algodón, corte oversize..."
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Tipología -->
+
+            <div class="form-group">
+                <label for="tipologia">Tipología / Categoría</label>
+
+                <select id="tipologia" name="tipologia" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="remeras">Remeras</option>
+                    <option value="pantalones">Pantalones</option>
+                    <option value="camperas">Camperas</option>
+                    <option value="buzos">Buzos</option>
+                </select>
+            </div>
+
+            <!-- NUEVO SELECTOR DE COLOR -->
+
+            <div class="form-group">
+                <label>Color Principal</label>
+
+                <div class="color-selector">
+                    <input type="radio" id="rojo" name="color" value="rojo" required>
+                    <label for="rojo" class="color-box" title="Rojo" style="background:#b3002d;"></label>
+
+                    <input type="radio" id="beige" name="color" value="beige">
+                    <label for="beige" class="color-box" title="Beige" style="background:#e9dcc9;"></label>
+
+                    <input type="radio" id="negro" name="color" value="negro">
+                    <label for="negro" class="color-box" title="Negro" style="background:#000000;"></label>
+
+                    <input type="radio" id="gris" name="color" value="gris">
+                    <label for="gris" class="color-box" title="Gris" style="background:#9b9b9b;"></label>
+
+                    <input type="radio" id="blanco" name="color" value="blanco">
+                    <label for="blanco" class="color-box" title="Blanco" style="background:#ffffff;"></label>
+
+                    <input type="radio" id="azul" name="color" value="azul">
+                    <label for="azul" class="color-box" title="Azul" style="background:#003c8f;"></label>
+
+                    <input type="radio" id="celeste" name="color" value="celeste">
+                    <label for="celeste" class="color-box" title="Celeste" style="background:#6ec6ff;"></label>
+
+                    <input type="radio" id="verde" name="color" value="verde">
+                    <label for="verde" class="color-box" title="Verde" style="background:#2e8b57;"></label>
+
+                    <input type="radio" id="verde_oliva" name="color" value="verde oliva">
+                    <label for="verde_oliva" class="color-box" title="Verde oliva" style="background:#556b2f;"></label>
+
+                    <input type="radio" id="amarillo" name="color" value="amarillo">
+                    <label for="amarillo" class="color-box" title="Amarillo" style="background:#ffd700;"></label>
+
+                    <input type="radio" id="naranja" name="color" value="naranja">
+                    <label for="naranja" class="color-box" title="Naranja" style="background:#ff7f00;"></label>
+
+                    <input type="radio" id="rosa" name="color" value="rosa">
+                    <label for="rosa" class="color-box" title="Rosa" style="background:#ff8fab;"></label>
+
+                    <input type="radio" id="violeta" name="color" value="violeta">
+                    <label for="violeta" class="color-box" title="Violeta" style="background:#7b2cbf;"></label>
+
+                    <input type="radio" id="marron" name="color" value="marron">
+                    <label for="marron" class="color-box" title="Marrón" style="background:#6f4e37;"></label>
+
+                    <input type="radio" id="varios_colores" name="color" value="varios colores">
+                    <label for="varios_colores" class="color-box" title="Varios colores" style="background:#eeeeee;"></label>
+                </div>
+            </div>
+
+            <hr>
+
+            <h3>Talles y Stock Disponible</h3>
+
+            <p style="color:#888;font-size:14px;margin-bottom:15px;">
+                Marca los talles que vas a ingresar y escribe su cantidad física disponible.
+            </p>
+
+            <div class="talles-container">
+
+                <div class="talle-row">
+                    <input type="checkbox" id="talle_xs" name="talles" value="XS">
+                    <label for="talle_xs">Talle XS</label>
+                    <input type="number" name="stock_XS" placeholder="Cantidad" min="0" value="0">
+                </div>
+
+                <div class="talle-row">
+                    <input type="checkbox" id="talle_s" name="talles" value="S">
+                    <label for="talle_s">Talle S</label>
+                    <input type="number" name="stock_S" placeholder="Cantidad" min="0" value="0">
+                </div>
+
+                <div class="talle-row">
+                    <input type="checkbox" id="talle_m" name="talles" value="M">
+                    <label for="talle_m">Talle M</label>
+                    <input type="number" name="stock_M" placeholder="Cantidad" min="0" value="0">
+                </div>
+
+                <div class="talle-row">
+                    <input type="checkbox" id="talle_l" name="talles" value="L">
+                    <label for="talle_l">Talle L</label>
+                    <input type="number" name="stock_L" placeholder="Cantidad" min="0" value="0">
+                </div>
+
+                <div class="talle-row">
+                    <input type="checkbox" id="talle_xl" name="talles" value="XL">
+                    <label for="talle_xl">Talle XL</label>
+                    <input type="number" name="stock_XL" placeholder="Cantidad" min="0" value="0">
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h3>Imágenes de la Prenda (Subir las 4)</h3>
+
+            <div class="imagenes-grid">
+
+                <div class="form-group">
+                    <label>Imagen Principal</label>
+                    <input type="file" name="imagenes" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Imagen 2</label>
+                    <input type="file" name="imagenes" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Imagen 3</label>
+                    <input type="file" name="imagenes" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Imagen 4</label>
+                    <input type="file" name="imagenes" accept="image/*" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Guardar y Publicar Producto
+            </button>
+
+        </form>
+
+    </div>
+
+    <script src="javascript/formulario.js"></script>
+
+</body>
+</html>
