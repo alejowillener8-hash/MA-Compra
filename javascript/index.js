@@ -72,18 +72,7 @@ const userDropdown = document.getElementById("userDropdown");
 function renderUserMenu() {
     const nombre = localStorage.getItem("nombre");
 
-<<<<<<< HEAD
     if (!userDropdown) return;
-=======
-    btnLogout.style.display = "inline-block";
-
-} else {
-
-    // Usuario no logueado
-    btnLogin.innerHTML = `<a href="login.html" class="login-link">Iniciar Sesión</a>`;
-
-    btnLogout.style.display = "none";
->>>>>>> 6a414fd0938c054712a04c912b83ff582e5440a8
 
     if (nombre) {
         userDropdown.innerHTML = `

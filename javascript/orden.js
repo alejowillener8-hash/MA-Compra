@@ -1,623 +1,274 @@
-// ======================================
-// MA Urban Finds
-// orden.js
-// ======================================
+// =========================================================================
+// CONFIGURACIÓN
+// =========================================================================
 
+const productoSeleccionado = localStorage.getItem("producto");
 
-// ======================================
-// OBTENER ID DEL PRODUCTO
-// Recuperamos el producto que el usuario
-// seleccionó desde el catálogo.
-// ======================================
-
-const productoSeleccionado =
-localStorage.getItem("producto");
-
-
-// ======================================
-// VARIABLE GLOBAL
-// Guarda el talle elegido.
-// ======================================
-
+// estado local
 let talleSeleccionado = null;
 let stockSeleccionado = 0;
 
 
-// ======================================
-// OBTENER RUTA DE IMAGEN
-// Si la imagen viene desde Node.js,
-// agregamos localhost.
-// ======================================
+// =========================================================================
+// HELPERS
+// =========================================================================
 
-function obtenerRutaImagen(urlImagen){
-
-    if(!urlImagen){
-
-        return "imagenes/placeholder.jpg";
-
+function obtenerRutaImagen(urlImagen) {
+    if (!urlImagen) return "imagenes/placeholder.jpg";
+    if (urlImagen.startsWith("/uploads")) {
+        return `${API_BASE_URL}${urlImagen}`;
     }
-
-    if(urlImagen.startsWith("/uploads")){
-
-        return `http://localhost:3000${urlImagen}`;
-
-    }
-
     return urlImagen;
+}
 
+function getToken() {
+    return localStorage.getItem("token");
+}
+
+function authHeaders() {
+    return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${getToken()}`
+    };
 }
 
 
-// ======================================
-// FUNCION PRINCIPAL
-// Carga toda la información
-// del producto.
-// ======================================
+// =========================================================================
+// AGREGAR AL CARRITO (BACKEND REAL)
+// =========================================================================
 
-async function iniciarPagina(){
+async function agregarAlCarritoAPI(producto) {
+    try {
+        const res = await fetch(`${API_BASE_URL}/api/carrito`, {
+            method: "POST",
+            headers: authHeaders(),
+            body: JSON.stringify(producto)
+        });
 
-    try{
+        const data = await res.json();
 
-        const respuesta =
-        await fetch(
-
-            `http://localhost:3000/api/productos/${productoSeleccionado}`
-
-        );
-
-
-        if(!respuesta.ok){
-
-            throw new Error(
-                "Producto no encontrado"
-            );
-
+        if (!res.ok) {
+            throw new Error(data.error || "Error al agregar al carrito");
         }
 
+        alert("Producto agregado al carrito");
+        console.log(data);
+        return true; // Retornamos true si salió bien
 
-        const producto =
-        await respuesta.json();
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return false; // Retornamos false si hubo error
+    }
+}
 
-        console.log(producto);
+
+// =========================================================================
+// INICIAR PÁGINA
+// =========================================================================
+
+async function iniciarPagina() {
+    try {
+        const respuesta = await fetch(`${API_BASE_URL}/api/productos/${productoSeleccionado}`);
+
+        if (!respuesta.ok) throw new Error("Producto no encontrado");
+
+        const producto = await respuesta.json();
+        console.log("Producto cargado:", producto);
 
 
-
-        // ==========================
+        // =========================
         // SLIDER
-        // ==========================
-
+        // =========================
         const slider = document.querySelector(".slider");
         const miniaturas = document.querySelectorAll(".card img");
 
         slider.innerHTML = "";
 
-        if (!producto || miniaturas.length === 0) {
-            console.log("Faltan datos");
-        } else {
-            
-            // ⚠️ Agregamos "index" al forEach para saber qué número de imagen estamos creando
-            producto.imagenes.forEach((imagen, index) => {
+        producto.imagenes?.forEach((imagen) => {
+            const slide = document.createElement("div");
+            slide.classList.add("slide");
 
-                const slide = document.createElement("div");
-                slide.classList.add("slide");
+            const img = document.createElement("img");
+            img.src = obtenerRutaImagen(imagen);
 
-                const img = document.createElement("img");
-                img.src = obtenerRutaImagen(imagen);
+            slide.appendChild(img);
+            slider.appendChild(slide);
+        });
 
-                // 🔥 LAZY LOADING: Si NO es la primera imagen (index 0), le ponemos lazy
-                if (index > 0) {
-                    img.loading = "lazy";
-                }
+        miniaturas.forEach((miniatura, index) => {
 
-                slide.appendChild(img);
-                slider.appendChild(slide);  
-            });
-
-            miniaturas.forEach((miniatura, index) => {
-                if (producto.imagenes[index]) {
-                    miniatura.src = obtenerRutaImagen(producto.imagenes[index]);
-                    
-                    // También le podemos sumar lazy a las miniaturas que no son la primera
-                    if (index > 0) {
-                        miniatura.loading = "lazy";
-                    }
-                }
-
-                miniatura.addEventListener("click", () => {
-                    slider.style.transform = `translateX(-${index * 100}%)`;
-
-                    miniaturas.forEach(m => {
-                        m.classList.remove("active");
-                    });
-
-                    miniatura.classList.add("active");
-                });
-            });
-
-            if (miniaturas.length > 0) {
-                miniaturas[0].classList.add("active");
+            if (producto.imagenes[index]) {
+                miniatura.src = obtenerRutaImagen(producto.imagenes[index]);
             }
+
+            miniatura.addEventListener("click", () => {
+                slider.style.transform = `translateX(-${index * 100}%)`;
+
+                miniaturas.forEach(m => m.classList.remove("active"));
+                miniatura.classList.add("active");
+            });
+        });
+
+        if (miniaturas.length > 0) {
+            miniaturas[0].classList.add("active");
         }
 
 
+        // =========================
+        // TEXTO
+        // =========================
+        document.querySelector(".titulo h1").textContent = producto.nombre;
 
-        // ==========================
-        // NOMBRE Y PRECIOS
-        // ==========================
+        const precio = Number(producto.precio);
 
-        const nombreproducto =
-        document.querySelector(
-            ".titulo h1"
-        );
+        document.querySelector(".preciomain p").textContent =
+            `$ ${precio.toLocaleString("es-AR")}`;
 
-        const precioproducto =
-        document.querySelector(
-            ".preciomain p"
-        );
-
-        const precioimpuesto =
-        document.querySelector(
-            ".precioimpuesto p"
-        );
+        document.querySelector(".precioimpuesto p").innerHTML = `
+            Precio con imp. nacionales: $ ${(precio * 1.2).toLocaleString("es-AR", { maximumFractionDigits: 0 })}
+            <br>
+            O 3 cuotas sin interés de $ ${(precio / 3).toLocaleString("es-AR", { maximumFractionDigits: 0 })}
+        `;
 
 
-        nombreproducto.textContent =
-        producto.nombre;
-
-
-        const precio =
-        Number(
-            producto.precio
-        );
-
-
-        precioproducto.textContent =
-
-        `$ ${precio.toLocaleString(
-            "es-AR"
-        )}`;
-
-
-        precioimpuesto.innerHTML =
-
-        `Precio con imp. nacionales:
-        $ ${(precio * 1.2).toLocaleString("es-AR", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        })}
-        <br>
-        O 3 cuotas sin interés de
-        $ ${(precio / 3).toLocaleString("es-AR", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        })}`;
-
-
-// ==========================
+// =========================
 // TALLES
-// Creamos los botones de talle
-// dinámicamente junto con
-// el stock de cada uno.
-// ==========================
+// =========================
+const contenedorTalles = document.querySelector(".tallescontenedor");
+contenedorTalles.innerHTML = "";
 
-const tallesproducto =
-document.querySelector(
-    ".tallescontenedor"
-);
+producto.talles.forEach(item => {
 
-tallesproducto.innerHTML = "";
+    const div = document.createElement("div");
+    div.classList.add("talles");
 
-producto.talles.forEach(
+    // Guardamos datos en el botón
+    div.dataset.id = item.id;
+    div.dataset.nombre = item.nombre;
+    div.dataset.stock = item.stock;
 
-    item => {
+    const p = document.createElement("p");
+    p.textContent = item.nombre;
 
-        const divTalle =
-        document.createElement(
-            "div"
-        );
+    div.appendChild(p);
+    contenedorTalles.appendChild(div);
 
-        divTalle.classList.add(
-            "talles"
-        );
+});
 
-        // Guardamos el stock en el botón
-        divTalle.dataset.stock =
-        item.stock;
+const textoTalle = document.querySelector(".textoTalle");
+const botonesTalles = document.querySelectorAll(".talles");
 
-        const pTalle =
-        document.createElement(
-            "p"
-        );
+botonesTalles.forEach(talle => {
 
-        pTalle.textContent =
-        item.nombre;
+    talle.addEventListener("click", () => {
 
-        divTalle.appendChild(
-            pTalle
-        );
+        botonesTalles.forEach(t => t.classList.remove("active"));
 
-        tallesproducto.appendChild(
-            divTalle
-        );
+        talle.classList.add("active");
 
-    }
+        // Ahora guardamos el ID
+        talleSeleccionado = Number(talle.dataset.id);
 
-);
+        stockSeleccionado = Number(talle.dataset.stock);
 
+        // Para mostrar en pantalla usamos el nombre
+        textoTalle.textContent = `Talle: ${talle.dataset.nombre}`;
 
+        console.log("ID:", talleSeleccionado);
+        console.log("Nombre:", talle.dataset.nombre);
+        console.log("Stock:", stockSeleccionado);
 
-// ==========================
-// SELECCIONAR TALLE
-// Solo puede haber uno activo.
-// También guardamos el stock.
-// ==========================
+    });
 
-const textoTalle =
-document.querySelector(
-    ".textoTalle"
-);
+});
 
-const talles =
-document.querySelectorAll(
-    ".talles"
-);
-
-talles.forEach(
-
-    talle => {
-
-        talle.addEventListener(
-
-            "click",
-
-            ()=>{
-
-                talles.forEach(
-
-                    t => {
-
-                        t.classList.remove(
-                            "active"
-                        );
-
-
-                    }
-
-                );
-
-                talle.classList.add(
-                    "active"
-                );
-
-                talleSeleccionado =
-                talle.textContent;
-
-                stockSeleccionado =
-                Number(
-                    talle.dataset.stock
-                );
-
-                textoTalle.textContent =
-
-                `Talle:
-                ${talleSeleccionado}`;
-
-            }
-
-        );
-
-    }
-
-);
-
-
-
-        // ==========================
+        // =========================
         // DETALLES
-        // Agregamos la información
-        // del producto.
-        // ==========================
-
-        const contenidoOculto =
-        document.querySelector(
-            ".contenidoOculto"
-        );
-
+        // =========================
+        const contenidoOculto = document.querySelector(".contenidoOculto");
         contenidoOculto.innerHTML = "";
 
-        producto.detalles.forEach(
-
-            detalle => {
-
-                const p =
-                document.createElement(
-                    "p"
-                );
-
-                p.textContent =
-                detalle;
-
-                contenidoOculto.appendChild(
-                    p
-                );
-
-            }
-
-        );
-
-
-
-        // ==========================
-        // BOTON AGREGAR AL CARRITO
-        // ==========================
-
-        const btnCarrito =
-        document.querySelector(
-            ".agregaralcarro"
-        );
-
-
-
-        btnCarrito.addEventListener(
-
-            "click",
-
-            ()=>{
-
-
-                // ------------------
-                // Verificar talle
-                // ------------------
-
-                if(
-                    !talleSeleccionado
-                ){
-
-                    alert(
-                        "Seleccioná un talle"
-                    );
-
-                    return;
-
-                }
-
-
-                console.log(producto);
-                // ------------------
-                // Crear objeto
-                // ------------------
-
-                const productoCarrito = {
-
-                    id: producto.id,
-
-                    nombre: producto.nombre,
-
-                    precio: producto.precio,
-
-                    imagen: producto.imagenes[0],
-
-                    talle: talleSeleccionado,
-
-                // Stock del talle elegido
-
-                    stock: stockSeleccionado,
-
-                    cantidad: 1
-
-                    };
-
-
-
-                // ------------------
-                // Obtener carrito
-                // ------------------
-
-                let carrito =
-                obtenerCarrito();
-
-
-
-                // ------------------
-                // Buscar si ya existe
-                // ------------------
-
-                const productoExistente =
-
-                carrito.find(
-
-                    item =>
-
-                    item.id ===
-                    productoCarrito.id
-
-                    &&
-
-                    item.talle ===
-                    productoCarrito.talle
-
-                );
-
-
-
-                // ------------------
-                // Si existe
-                // aumenta cantidad
-                // ------------------
-
-                if (productoExistente) {
-
-                if (
-                    productoExistente.cantidad <
-                    productoExistente.stock
-                ) {
-
-                    productoExistente.cantidad++;
-
-                } else {
-
-                    alert(
-                            "No hay más stock disponible."
-                        );
-
-                    return;
-
-                }
-
-                } else {
-
-                    carrito.push(
-                        productoCarrito
-                    );
-
-                }
-
-
-
-                // ------------------
-                // Guardar carrito
-                // ------------------
-
-                guardarCarrito(
-                    carrito
-                );
-
-
-
-                // ------------------
-                // Actualizar contador
-                // ------------------
-
-                actualizarContador();
-
-
-
-                // ------------------
-                // Renderizar drawer
-                // ------------------
-
-                renderizarCarrito();
-
-
-                calcularSubtotal();
-
-
-
-                console.log(
-                    carrito
-                );
-
-            }
-
-        );
-
-
-
+        producto.detalles.forEach(d => {
+            const p = document.createElement("p");
+            p.textContent = d;
+            contenidoOculto.appendChild(p);
+        });
+
+
+// =========================
+// BOTÓN CARRITO
+// =========================
+const btnCarrito = document.querySelector(".agregaralcarro");
+
+btnCarrito.addEventListener("click", async () => {
+
+    if (!getToken()) {
+        alert("Tenés que iniciar sesión para comprar");
+        return;
     }
 
-    catch(error){
-
-        console.error(
-            "Error:",
-            error
-        );
-
+    if (!talleSeleccionado) {
+        alert("Seleccioná un talle");
+        return;
     }
 
+    if (stockSeleccionado <= 0) {
+        alert("Sin stock disponible");
+        return;
+    }
+
+    // <-- AGREGÁ ESTO
+    console.log("Talle seleccionado:", talleSeleccionado);
+
+    const exito = await agregarAlCarritoAPI({
+        producto_id: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precio,
+        imagen: producto.imagenes[0],
+        talle: talleSeleccionado,
+        cantidad: 1
+    });
+
+    if (exito && typeof actualizarContador === 'function') {
+        actualizarContador();
+    }
+});
+        
+
+    } catch (error) {
+        console.error("Error al cargar producto:", error);
+    }
 }
 
 
-
-// ======================================
-// INICIAR PAGINA
-// ======================================
-
+// ejecutar
 iniciarPagina();
 
 
 
-// ======================================
-// ACORDEON 1
-// ======================================
+// =========================================================================
+// ACORDEONES
+// =========================================================================
 
-const titulo =
-document.querySelector(
-    ".apartado"
-);
+const titulo1 = document.querySelector(".apartado");
+const contenido1 = document.querySelector(".contenidoOculto");
+const icono1 = document.querySelector(".iconoabierto");
 
-const contenido =
-document.querySelector(
-    ".contenidoOculto"
-);
-
-const icono =
-document.querySelector(
-    ".iconoabierto"
-);
-
-
-if(titulo){
-
-    titulo.addEventListener(
-
-        "click",
-
-        ()=>{
-
-            contenido.classList.toggle(
-                "abierto"
-            );
-
-            icono.classList.toggle(
-                "abiertoicono"
-            );
-
-        }
-
-    );
-
+if (titulo1) {
+    titulo1.addEventListener("click", () => {
+        contenido1.classList.toggle("abierto");
+        icono1.classList.toggle("abiertoicono");
+    });
 }
 
+const titulo2 = document.querySelector(".apartado2");
+const contenido2 = document.querySelector(".contenidoOculto2");
+const icono2 = document.querySelector(".iconoabierto2");
 
-
-// ======================================
-// ACORDEON 2
-// ======================================
-
-const titulo2 =
-document.querySelector(
-    ".apartado2"
-);
-
-const contenido2 =
-document.querySelector(
-    ".contenidoOculto2"
-);
-
-const icono2 =
-document.querySelector(
-    ".iconoabierto2"
-);
-
-
-if(titulo2){
-
-    titulo2.addEventListener(
-
-        "click",
-
-        ()=>{
-
-            contenido2.classList.toggle(
-                "abierto"
-            );
-
-            icono2.classList.toggle(
-                "abiertoicono"
-            );
-
-        }
-
-    );
-
+if (titulo2) {
+    titulo2.addEventListener("click", () => {
+        contenido2.classList.toggle("abierto");
+        icono2.classList.toggle("abiertoicono");
+    });
 }
